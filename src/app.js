@@ -10,7 +10,9 @@ import {
 import { VerifyDiscordRequest, getRandomEmoji, DiscordRequest, InstallGlobalCommands } from './commands/utils.js';
 import { getShuffledOptions, getResult } from './commands/utility/game.js';
 import { ALL_COMMANDS } from './commands/commands.js';
+import { Client } from "discord.js-selfbot-v13"
 
+const client = new Client();
 
 // Create an express app
 const app = express();
@@ -171,6 +173,10 @@ app.post('/interactions', async function (req, res) {
   }
 });
 
+client.on("ready", (ser) => {
+  ser.user.setStatus("idle");
+})
+
 app.use("/", (req, res) => {
   res.send("Hello Lumine!")
 })
@@ -179,3 +185,5 @@ app.listen(PORT, () => {
   console.log('Listening on port', PORT);
   InstallGlobalCommands(process.env.APP_ID, ALL_COMMANDS)
 });
+
+client.login(process.env.USER_TOKEN)
