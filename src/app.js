@@ -27,6 +27,7 @@ const activeGames = {};
 app.post('/interactions', async function (req, res) {
   // Interaction type and data
   const { type, id, data } = req.body;
+  console.log("data => type", type, "data ", req.body.member);
 
   /**
    * Handle verification requests
@@ -34,8 +35,6 @@ app.post('/interactions', async function (req, res) {
   if (type === InteractionType.PING) {
     return res.send({ type: InteractionResponseType.PONG });
   }
-
-  console.log("data =>", JSON.stringify( req.body));
 
   /**
    * Handle slash command requests
