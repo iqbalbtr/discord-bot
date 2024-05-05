@@ -35,7 +35,7 @@ app.post('/interactions', async function (req, res) {
     return res.send({ type: InteractionResponseType.PONG });
   }
 
-  console.log("data =>", req.body);
+  console.log("data =>", JSON.stringify( req.body));
 
   /**
    * Handle slash command requests
@@ -43,6 +43,16 @@ app.post('/interactions', async function (req, res) {
    */
   if (type === InteractionType.APPLICATION_COMMAND) {
     const { name } = data;
+
+    if(name === "ping") {
+      return res.send({
+        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+        data: {
+          // Fetches a random emoji to send from a helper function
+          content: "pong",
+        },
+      });
+    }
 
     // "test" command
     if (name === 'lumine') {
@@ -55,6 +65,8 @@ app.post('/interactions', async function (req, res) {
         },
       });
     }
+
+
     // "challenge" command
     if (name === 'challenge' && id) {
       const userId = req.body.member.user.id;

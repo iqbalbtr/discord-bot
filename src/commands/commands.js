@@ -17,6 +17,12 @@ function createCommandChoices() {
   return commandChoices;
 }
 
+const PING_COMMAND = {
+  name: 'ping',
+  description: 'pong',
+  type: 1,
+}
+
 // Simple test command
 const TEST_COMMAND = {
   name: 'lumine',
@@ -40,5 +46,5 @@ const CHALLENGE_COMMAND = {
   type: 1,
 };
 
-export const ALL_COMMANDS = [TEST_COMMAND, CHALLENGE_COMMAND];
+export const ALL_COMMANDS = [TEST_COMMAND, CHALLENGE_COMMAND, PING_COMMAND];
 
