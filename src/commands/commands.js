@@ -19,7 +19,7 @@ function createCommandChoices() {
 
 // Simple test command
 const TEST_COMMAND = {
-  name: 'test',
+  name: 'lumine',
   description: 'Basic command',
   type: 1,
 };
